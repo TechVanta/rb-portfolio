@@ -13,30 +13,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ravi Bhalala | Technologist, Entrepreneur & Lifelong Learner",
+  title: "Ravi Bhalala | Cloud Engineer & DevOps Specialist | AWS | AI Generalist",
   description:
-    "Personal portfolio of Ravi Bhalala - A passionate technologist, entrepreneur, and lifelong learner dedicated to building impactful solutions and meaningful connections.",
+    "Personal portfolio of Ravi Bhalala - Cloud Engineer, DevOps Specialist, and AI Generalist based in Toronto, Canada. Passionate about AWS, Infrastructure as Code, and building impactful solutions.",
   keywords: [
     "Ravi Bhalala",
+    "Cloud Engineer",
+    "DevOps",
+    "AWS",
+    "Terraform",
     "Software Developer",
-    "Entrepreneur",
-    "Technology",
-    "Portfolio",
+    "AI Generalist",
+    "Toronto",
     "Canada",
   ],
   authors: [{ name: "Ravi Bhalala" }],
   openGraph: {
-    title: "Ravi Bhalala | Technologist, Entrepreneur & Lifelong Learner",
+    title: "Ravi Bhalala | Cloud Engineer & DevOps Specialist | AWS | AI Generalist",
     description:
-      "Personal portfolio of Ravi Bhalala - A passionate technologist, entrepreneur, and lifelong learner.",
+      "Cloud Engineer, DevOps Specialist, and AI Generalist based in Toronto, Canada. Expert in AWS, Terraform, and building scalable cloud solutions.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ravi Bhalala | Technologist, Entrepreneur & Lifelong Learner",
+    title: "Ravi Bhalala | Cloud Engineer & DevOps Specialist | AWS | AI Generalist",
     description:
-      "Personal portfolio of Ravi Bhalala - A passionate technologist, entrepreneur, and lifelong learner.",
+      "Cloud Engineer, DevOps Specialist, and AI Generalist based in Toronto, Canada. Expert in AWS, Terraform, and building scalable cloud solutions.",
   },
 };
 

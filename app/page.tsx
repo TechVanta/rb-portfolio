@@ -3,13 +3,48 @@ import Link from "next/link";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
+// Tech Stack / Skills Data
+const techStack = [
+  { name: "AWS", icon: "☁️", category: "Cloud" },
+  { name: "Azure", icon: "🔷", category: "Cloud" },
+  { name: "Terraform", icon: "🏗️", category: "IaC" },
+  { name: "Docker", icon: "🐳", category: "Containers" },
+  { name: "Kubernetes", icon: "⚙️", category: "Orchestration" },
+  { name: "GitHub Actions", icon: "🔄", category: "CI/CD" },
+  { name: "Azure DevOps", icon: "🚀", category: "CI/CD" },
+  { name: ".NET Core", icon: "💜", category: "Backend" },
+  { name: "Python", icon: "🐍", category: "Backend" },
+  { name: "TypeScript", icon: "📘", category: "Frontend" },
+  { name: "Lambda", icon: "⚡", category: "Serverless" },
+  { name: "SQL", icon: "🗃️", category: "Database" },
+];
+
+// Certifications Data
+const certifications = [
+  {
+    name: "AWS Certified AI Practitioner",
+    issuer: "Amazon Web Services",
+    icon: "🤖",
+  },
+  {
+    name: "HashiCorp Terraform Associate (003)",
+    issuer: "HashiCorp",
+    icon: "🏗️",
+  },
+  {
+    name: "Verified International Academic Qualifications",
+    issuer: "WES",
+    icon: "🎓",
+  },
+];
+
 // Passion/Interest Card Data
 const passions = [
   {
-    icon: "💻",
-    title: "Technology",
+    icon: "☁️",
+    title: "Cloud Architecture",
     description:
-      "Passionate about cutting-edge tech, gadgets, and building innovative solutions that make a difference.",
+      "Designing and optimizing cloud infrastructure on AWS and Azure for high availability, scalability, and cost efficiency.",
   },
   {
     icon: "📚",
@@ -33,13 +68,13 @@ const passions = [
     icon: "🚀",
     title: "Entrepreneurship",
     description:
-      "Driven by the desire to create, innovate, and build ventures that solve real-world problems.",
+      "Driven by the vision of starting my own venture in AI or disruptive technology that creates real value.",
   },
   {
     icon: "🤝",
     title: "Collaboration",
     description:
-      "Believer in the power of teamwork and building meaningful professional relationships.",
+      "Connecting with entrepreneurs, innovators, and potential co-founders who share the same drive for impact.",
   },
 ];
 
@@ -47,9 +82,9 @@ const passions = [
 const valueProps = [
   {
     audience: "Employers",
-    title: "A Dedicated Professional",
+    title: "Cloud & DevOps Expert",
     description:
-      "Bringing technical excellence, continuous learning mindset, and a strong work ethic to every project. I deliver results that exceed expectations.",
+      "6+ years building scalable cloud infrastructure on AWS & Azure. Certified in Terraform and AWS AI. Proven track record of reducing cloud costs by 40% and leading CI/CD transformations.",
     cta: "View My Experience",
     href: "/career",
     icon: (
@@ -72,7 +107,7 @@ const valueProps = [
     audience: "Investors",
     title: "A Visionary Builder",
     description:
-      "Combining technical expertise with business acumen to identify opportunities and create scalable solutions with strong market potential.",
+      "Deep understanding of cloud economics and scalable architectures. Passionate about AI and disruptive technology with a vision to build ventures that create real value.",
     cta: "Explore My Vision",
     href: "/about",
     icon: (
@@ -95,7 +130,7 @@ const valueProps = [
     audience: "Co-Founders",
     title: "A Reliable Partner",
     description:
-      "Seeking like-minded individuals who share the passion for building something meaningful. Let's turn ambitious ideas into reality together.",
+      "Seeking entrepreneurs and innovators who share the passion for building something meaningful. I bring technical leadership, mentorship experience, and a collaborative mindset.",
     cta: "Let's Connect",
     href: "/contact",
     icon: (
@@ -147,14 +182,15 @@ export default function Home() {
               </h1>
 
               <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xl">
-                A passionate technologist, lifelong learner, and aspiring entrepreneur 
-                dedicated to building impactful solutions and meaningful connections.
+                Cloud Engineer | AWS | Infrastructure as Code | DevOps | AI Generalist — 
+                passionate about innovation and building solutions that truly make an impact.
               </p>
 
               <p className="mt-4 text-base text-zinc-500 dark:text-zinc-500 leading-relaxed max-w-xl">
-                I blend technical expertise with a philosophical mindset, believing that 
-                great technology should enhance human potential. Whether it&apos;s code, 
-                business, or personal growth — I approach everything with curiosity and dedication.
+                Driven by the vision of building my own venture in AI or disruptive technology. 
+                I believe collaboration is the foundation of every great startup. Whether it&apos;s 
+                discussing ideas, exploring partnerships, or turning concepts into reality — I&apos;m 
+                always eager to connect with innovators and entrepreneurs.
               </p>
 
               {/* CTA Buttons */}
@@ -190,7 +226,7 @@ export default function Home() {
               <div className="mt-12 flex gap-8">
                 <div>
                   <div className="text-3xl font-bold text-zinc-900 dark:text-white">
-                    5+
+                    6+
                   </div>
                   <div className="text-sm text-zinc-500 dark:text-zinc-400">
                     Years Experience
@@ -240,10 +276,66 @@ export default function Home() {
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">🇨🇦</span>
                     <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      Based in Canada
+                      Toronto, Canada
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack & Certifications Section */}
+      <section className="py-20 lg:py-32 bg-white dark:bg-zinc-950">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Tech Stack */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+                Tech Stack
+              </h2>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-8">
+                Technologies and tools I work with daily to build scalable cloud solutions.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {techStack.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-full text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 transition-colors cursor-default"
+                  >
+                    <span>{tech.icon}</span>
+                    <span>{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+                Certifications
+              </h2>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-8">
+                Professional certifications validating my expertise.
+              </p>
+              <div className="space-y-4">
+                {certifications.map((cert, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-4 bg-gradient-to-r from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700"
+                  >
+                    <div className="text-3xl">{cert.icon}</div>
+                    <div>
+                      <h3 className="font-semibold text-zinc-900 dark:text-white">
+                        {cert.name}
+                      </h3>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                        {cert.issuer}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

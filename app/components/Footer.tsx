@@ -30,7 +30,7 @@ const socialLinks = [
   },
   {
     name: "Email",
-    href: "mailto:geekyrbhalala@gmail.com",
+    href: "mailto:ravibhalala_217@yahoo.com",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
@@ -78,7 +78,7 @@ export default function Footer() {
               Ravi Bhalala<span className="text-blue-600">.</span>
             </Link>
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400 max-w-md">
-              Technology enthusiast, lifelong learner, and passionate about building impactful solutions. 
+              Cloud Engineer & DevOps Specialist with 6+ years of experience in AWS, Infrastructure as Code, and building scalable solutions. 
               Let&apos;s create something extraordinary together.
             </p>
             {/* Social Links */}
