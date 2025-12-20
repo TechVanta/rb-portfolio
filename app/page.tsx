@@ -182,8 +182,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xl">
-                Cloud Engineer | AWS | Infrastructure as Code | DevOps | AI Generalist — 
-                passionate about innovation and building solutions that truly make an impact.
+                A passionate technologist, lifelong learner, and aspiring entrepreneur dedicated to building impactful solutions and meaningful connections.
               </p>
 
               <p className="mt-4 text-base text-zinc-500 dark:text-zinc-500 leading-relaxed max-w-xl">
