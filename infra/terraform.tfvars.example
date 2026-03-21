@@ -1,0 +1,8 @@
+aws_region     = "us-east-1"
+environment    = "production"
+project_name   = "fintrack"
+github_org     = "YOUR_GITHUB_ORG"
+github_repo    = "YOUR_REPO_NAME"
+jwt_secret     = "CHANGE_ME"
+llm_provider   = "openai"
+openai_api_key = ""

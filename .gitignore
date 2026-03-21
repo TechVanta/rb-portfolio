@@ -38,4 +38,29 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# ── FinTrack Backend ──
+__pycache__/
+*.py[cod]
+backend/.venv/
+backend/venv/
+backend/.env
+backend/package/
+backend/deployment.zip
+
+# ── FinTrack Frontend ──
+frontend/node_modules/
+frontend/dist/
+
+# ── Terraform ──
+infra/.terraform/
+infra/*.tfstate*
+infra/.terraform.lock.hcl
+infra/terraform.tfvars
+infra/modules/lambda/placeholder.zip
+
+# ── Test / Coverage ──
+.pytest_cache/
+.coverage
+htmlcov/
 next-env.d.ts
