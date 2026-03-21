@@ -19,11 +19,11 @@ class OpenAIProvider(LLMProvider):
     """OpenAI-compatible LLM provider."""
 
     def __init__(self, settings: Settings):
-        self._api_key = settings.openai_api_key
+        self._api_key = settings.llm_api_key
         self._model = settings.openai_model
         self._base_url = "https://api.openai.com/v1"
         if not self._api_key:
-            raise LLMProviderError("openai", "OPENAI_API_KEY is not set")
+            raise LLMProviderError("openai", "LLM_API_KEY is not set")
 
     async def categorize(self, request: CategorizationRequest) -> CategorizationResult:
         prompt = self._build_prompt(request.description, request.amount)

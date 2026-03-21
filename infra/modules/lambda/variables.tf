@@ -10,20 +10,6 @@ variable "lambda_role_arn" {
   type = string
 }
 
-variable "jwt_secret" {
-  type      = string
-  sensitive = true
-}
-
-variable "openai_api_key" {
-  type      = string
-  sensitive = true
-}
-
-variable "llm_provider" {
-  type = string
-}
-
 variable "uploads_bucket" {
   type = string
 }

@@ -13,8 +13,8 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  S3_BUCKET: ${{ secrets.FRONTEND_S3_BUCKET }}
-  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+  S3_BUCKET: fintrack-frontend-production
+  CLOUDFRONT_DISTRIBUTION_ID: E0000000000000  # Replace after first terraform apply
 
 jobs:
   build-and-deploy:
@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_API_URL: ${{ secrets.API_URL }}
+          VITE_API_URL: https://fintrack-api-production.execute-api.us-east-1.amazonaws.com  # Replace after first terraform apply
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4

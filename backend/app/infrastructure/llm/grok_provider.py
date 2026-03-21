@@ -19,11 +19,11 @@ class GrokProvider(LLMProvider):
     """xAI Grok LLM provider (OpenAI-compatible API)."""
 
     def __init__(self, settings: Settings):
-        self._api_key = settings.grok_api_key
+        self._api_key = settings.llm_api_key
         self._model = settings.grok_model
         self._base_url = settings.grok_base_url
         if not self._api_key:
-            raise LLMProviderError("grok", "GROK_API_KEY is not set")
+            raise LLMProviderError("grok", "LLM_API_KEY is not set")
 
     async def categorize(self, request: CategorizationRequest) -> CategorizationResult:
         prompt = self._build_prompt(request.description, request.amount)

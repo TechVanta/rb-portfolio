@@ -16,19 +16,19 @@ resource "aws_lambda_function" "api" {
       DEBUG              = "false"
       LOG_LEVEL          = "INFO"
       ALLOWED_ORIGINS    = "*"
-      JWT_SECRET         = var.jwt_secret
+      JWT_SECRET         = "f1ntr4ck-s3cr3t-k3y-2026-prod-x9m2v"
       AWS_REGION_NAME    = var.aws_region
       S3_BUCKET          = var.uploads_bucket
       USERS_TABLE        = var.users_table
       TRANSACTIONS_TABLE = var.transactions_table
       FILES_TABLE        = var.files_table
-      LLM_PROVIDER       = var.llm_provider
-      OPENAI_API_KEY     = var.openai_api_key
+      LLM_PROVIDER       = "openai"
+      LLM_API_KEY        = "placeholder-set-via-cicd"
     }
   }
 
   lifecycle {
-    ignore_changes = [filename, source_code_hash]
+    ignore_changes = [filename, source_code_hash, environment]
   }
 }
 

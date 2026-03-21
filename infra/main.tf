@@ -37,9 +37,6 @@ module "lambda" {
   project_name       = var.project_name
   environment        = var.environment
   lambda_role_arn    = module.iam.lambda_role_arn
-  jwt_secret         = var.jwt_secret
-  openai_api_key     = var.openai_api_key
-  llm_provider       = var.llm_provider
   uploads_bucket     = module.s3.uploads_bucket_name
   users_table        = module.dynamodb.users_table_name
   transactions_table = module.dynamodb.transactions_table_name

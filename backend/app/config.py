@@ -11,33 +11,30 @@ class Settings(BaseSettings):
     app_name: str = "FinTrack"
     debug: bool = False
     log_level: str = "INFO"
-    allowed_origins: str = "*"  # comma-separated for production
+    allowed_origins: str = "*"
 
-    # ── Auth ─────────────────────────────────────────────────────────────
-    jwt_secret: str = "CHANGE-ME-IN-PRODUCTION"
+    # ── Auth (hardcoded) ─────────────────────────────────────────────────
+    jwt_secret: str = "f1ntr4ck-s3cr3t-k3y-2026-prod-x9m2v"
     jwt_algorithm: str = "HS256"
     jwt_expiration_minutes: int = 60 * 24  # 24 hours
 
-    # ── AWS ──────────────────────────────────────────────────────────────
+    # ── AWS (hardcoded) ──────────────────────────────────────────────────
     aws_region: str = "us-east-1"
-    aws_access_key_id: str | None = None
-    aws_secret_access_key: str | None = None
 
-    # ── DynamoDB ─────────────────────────────────────────────────────────
+    # ── DynamoDB (hardcoded) ─────────────────────────────────────────────
     dynamodb_endpoint: str | None = None  # For local dev
-    users_table: str = "fintrack-users"
-    transactions_table: str = "fintrack-transactions"
-    files_table: str = "fintrack-files"
+    users_table: str = "fintrack-users-production"
+    transactions_table: str = "fintrack-transactions-production"
+    files_table: str = "fintrack-files-production"
 
-    # ── S3 ───────────────────────────────────────────────────────────────
+    # ── S3 (hardcoded) ───────────────────────────────────────────────────
     s3_endpoint: str | None = None  # For local dev
-    s3_bucket: str = "fintrack-uploads"
+    s3_bucket: str = "fintrack-uploads-production"
 
-    # ── LLM ──────────────────────────────────────────────────────────────
+    # ── LLM (from env / GitHub Secrets) ──────────────────────────────────
     llm_provider: str = "openai"  # openai | grok
-    openai_api_key: str | None = None
+    llm_api_key: str = ""  # single key for whichever provider is active
     openai_model: str = "gpt-4o-mini"
-    grok_api_key: str | None = None
     grok_model: str = "grok-3-mini"
     grok_base_url: str = "https://api.x.ai/v1"
 
