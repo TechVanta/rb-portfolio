@@ -1,0 +1,100 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "backend/**"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  LAMBDA_FUNCTION_NAME: fintrack-api-production
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+
+      - name: Run tests
+        run: python -m pytest tests/ -v
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -t package/
+
+      - name: Package Lambda
+        run: |
+          cp -r app/ package/app/
+          cp lambda_handler.py package/
+          cd package && zip -r ../deployment.zip . -x '*.pyc' '__pycache__/*'
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
+            --zip-file fileb://deployment.zip
+
+      - name: Update Lambda environment
+        run: |
+          aws lambda wait function-updated --function-name ${{ env.LAMBDA_FUNCTION_NAME }}
+          aws lambda update-function-configuration \
+            --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
+            --environment "Variables={APP_NAME=fintrack,DEBUG=false,LOG_LEVEL=INFO,ALLOWED_ORIGINS=*,JWT_SECRET=f1ntr4ck-s3cr3t-k3y-2026-prod-x9m2v,AWS_REGION_NAME=${{ env.AWS_REGION }},S3_BUCKET=fintrack-uploads-production,USERS_TABLE=fintrack-users,TRANSACTIONS_TABLE=fintrack-transactions,FILES_TABLE=fintrack-files,LLM_PROVIDER=${{ secrets.LLM_PROVIDER }},LLM_API_KEY=${{ secrets.LLM_API_KEY }}}"
+
+      - name: Deployment Summary
+        run: |
+          echo "## 🚀 Backend Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Resource | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **API Endpoint** | https://m4ddvkqvuh.execute-api.us-east-1.amazonaws.com |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Health Check** | https://m4ddvkqvuh.execute-api.us-east-1.amazonaws.com/health |" >> $GITHUB_STEP_SUMMARY
+          echo "| **API Docs** | https://m4ddvkqvuh.execute-api.us-east-1.amazonaws.com/docs |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Lambda Function** | ${{ env.LAMBDA_FUNCTION_NAME }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Frontend URL** | https://d2zvlr9psk7n5x.cloudfront.net |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Backend deployed and Lambda environment updated" >> $GITHUB_STEP_SUMMARY
