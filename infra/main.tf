@@ -19,17 +19,13 @@ module "dynamodb" {
 }
 
 module "iam" {
-  source                      = "./modules/iam"
-  project_name                = var.project_name
-  environment                 = var.environment
-  github_org                  = var.github_org
-  github_repo                 = var.github_repo
-  uploads_bucket_arn          = module.s3.uploads_bucket_arn
-  frontend_bucket_arn         = module.s3.frontend_bucket_arn
-  users_table_arn             = module.dynamodb.users_table_arn
-  transactions_table_arn      = module.dynamodb.transactions_table_arn
-  files_table_arn             = module.dynamodb.files_table_arn
-  cloudfront_distribution_arn = module.cloudfront.distribution_arn
+  source             = "./modules/iam"
+  project_name       = var.project_name
+  environment        = var.environment
+  uploads_bucket_arn = module.s3.uploads_bucket_arn
+  users_table_arn    = module.dynamodb.users_table_arn
+  transactions_table_arn = module.dynamodb.transactions_table_arn
+  files_table_arn    = module.dynamodb.files_table_arn
 }
 
 module "lambda" {

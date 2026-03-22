@@ -22,14 +22,4 @@ variable "domain_name" {
   default     = ""
 }
 
-variable "github_org" {
-  description = "GitHub organization or user"
-  type        = string
-  default     = "geekyrbhalala"
-}
 
-variable "github_repo" {
-  description = "GitHub repository name"
-  type        = string
-  default     = "rb-portfolio"
-}
