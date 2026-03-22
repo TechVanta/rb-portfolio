@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.5"
+  required_version = ">= 1.10"
 
   required_providers {
     aws = {
@@ -9,11 +9,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "fintrack-terraform-state"
-    key            = "infra/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "fintrack-terraform-locks"
-    encrypt        = true
+    bucket  = "terraform-state-geekyrbhalala"
+    key     = "FinTrack/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
   }
 }
 
