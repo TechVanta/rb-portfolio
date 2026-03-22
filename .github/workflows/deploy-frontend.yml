@@ -14,7 +14,7 @@ permissions:
 env:
   AWS_REGION: us-east-1
   S3_BUCKET: fintrack-frontend-production
-  CLOUDFRONT_DISTRIBUTION_ID: E0000000000000  # Replace after first terraform apply
+  CLOUDFRONT_DISTRIBUTION_ID: E3PSFZDNXLYT3
 
 jobs:
   build-and-deploy:
@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_API_URL: https://fintrack-api-production.execute-api.us-east-1.amazonaws.com  # Replace after first terraform apply
+          VITE_API_URL: https://m4ddvkqvuh.execute-api.us-east-1.amazonaws.com
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -62,3 +62,16 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
+
+      - name: Deployment Summary
+        run: |
+          echo "## 🚀 Frontend Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Resource | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Frontend URL** | https://d2zvlr9psk7n5x.cloudfront.net |" >> $GITHUB_STEP_SUMMARY
+          echo "| **S3 Bucket** | ${{ env.S3_BUCKET }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **CloudFront ID** | ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **API Endpoint** | https://m4ddvkqvuh.execute-api.us-east-1.amazonaws.com |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Frontend deployed and CloudFront cache invalidated" >> $GITHUB_STEP_SUMMARY
