@@ -7,6 +7,7 @@ from app.domain.exceptions import LLMProviderError
 
 from .base import LLMProvider
 from .grok_provider import GrokProvider
+from .groq_provider import GroqProvider
 from .openai_provider import OpenAIProvider
 
 logger = logging.getLogger(__name__)
@@ -14,6 +15,7 @@ logger = logging.getLogger(__name__)
 _PROVIDERS: dict[str, type[LLMProvider]] = {
     "openai": OpenAIProvider,
     "grok": GrokProvider,
+    "groq": GroqProvider,
 }
 
 

@@ -22,7 +22,7 @@ resource "aws_lambda_function" "api" {
       USERS_TABLE        = var.users_table
       TRANSACTIONS_TABLE = var.transactions_table
       FILES_TABLE        = var.files_table
-      LLM_PROVIDER       = "openai"
+      LLM_PROVIDER       = "groq"
       LLM_API_KEY        = "placeholder-set-via-cicd"
     }
   }

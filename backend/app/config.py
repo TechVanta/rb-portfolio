@@ -32,11 +32,12 @@ class Settings(BaseSettings):
     s3_bucket: str = "fintrack-uploads-production"
 
     # ── LLM (from env / GitHub Secrets) ──────────────────────────────────
-    llm_provider: str = "openai"  # openai | grok
+    llm_provider: str = "groq"  # openai | grok | groq
     llm_api_key: str = ""  # single key for whichever provider is active
     openai_model: str = "gpt-4o-mini"
     grok_model: str = "grok-3-mini"
     grok_base_url: str = "https://api.x.ai/v1"
+    groq_model: str = "llama-3.3-70b-versatile"
 
     # ── Upload limits ────────────────────────────────────────────────────
     max_upload_size_mb: int = 10
